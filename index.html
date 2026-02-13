@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mis XV - Laura sandoval</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+
+body{
+font-family:'Playfair Display', serif;
+background:linear-gradient(135deg,#2b1d22,#1a1114,#120a0d);
+color:#f8e9e6;
+text-align:center;
+overflow-x:hidden;
+}
+
+.hero{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:flex-end;
+align-items:center;
+padding-bottom:120px;
+position:relative;
+overflow:hidden;
+}
+
+.hero::before{
+content:"";
+position:absolute;
+inset:0;
+background:
+linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.65)),
+url('https://i.postimg.cc/xdjP4N7j/cloned-image-(61).png') center/cover no-repeat;
+z-index:-2;
+}
+
+.particles{
+position:absolute;
+inset:0;
+pointer-events:none;
+z-index:-1;
+}
+
+.particles span{
+position:absolute;
+width:6px;
+height:6px;
+background:radial-gradient(circle,#ffd6d1,transparent);
+border-radius:50%;
+opacity:0;
+animation:float 18s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(100vh) scale(.6);opacity:0;}
+15%{opacity:.8;}
+85%{opacity:.8;}
+100%{transform:translateY(-10vh) scale(1.2);opacity:0;}
+}
+
+.hero h1{
+font-family:'Great Vibes', cursive;
+font-size:75px;
+color:#ffd6d1;
+margin-bottom:15px;
+text-shadow:0 0 25px rgba(255,192,203,.8);
+}
+
+.hero .fecha{
+font-size:20px;
+letter-spacing:3px;
+margin-bottom:25px;
+}
+
+.btn{
+padding:14px 30px;
+background:linear-gradient(45deg,#f7c8c2,#e6a7a1);
+color:#3a1f23;
+text-decoration:none;
+border-radius:40px;
+font-weight:bold;
+display:inline-block;
+transition:.3s;
+}
+
+.btn:hover{transform:scale(1.08);}
+
+.reveal{
+opacity:0;
+transform:translateY(60px) scale(.95);
+filter:blur(8px);
+transition:all 1.2s cubic-bezier(.22,1,.36,1);
+}
+
+.reveal.show{
+opacity:1;
+transform:translateY(0) scale(1);
+filter:blur(0);
+}
+
+section{
+padding:100px 20px;
+position:relative;
+}
+
+section::after{
+content:"";
+width:150px;
+height:2px;
+background:linear-gradient(90deg,transparent,#ffd6d1,transparent);
+display:block;
+margin:80px auto 0;
+animation:shine 3s infinite linear;
+}
+
+section:last-of-type::after{display:none;}
+
+@keyframes shine{
+0%{opacity:.2;}
+50%{opacity:1;}
+100%{opacity:.2;}
+}
+
+.card{
+max-width:750px;
+margin:0 auto;
+padding:45px;
+border-radius:25px;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(12px);
+border:1px solid rgba(255,182,193,.3);
+}
+
+.location-img{
+width:100%;
+max-width:550px;
+margin:25px auto;
+border-radius:20px;
+display:block;
+}
+
+.timeline{
+position:relative;
+max-width:800px;
+margin:0 auto;
+padding:40px 0;
+}
+
+.timeline::before{
+content:"";
+position:absolute;
+left:50%;
+top:0;
+bottom:0;
+width:2px;
+background:linear-gradient(to bottom,transparent,#ffd6d1,transparent);
+transform:translateX(-50%);
+}
+
+.timeline-item{
+position:relative;
+width:50%;
+padding:30px 40px;
+}
+
+.timeline-item.left{text-align:right;left:0;}
+.timeline-item.right{left:50%;}
+
+.timeline-item::after{
+content:"";
+position:absolute;
+top:38px;
+width:16px;
+height:16px;
+background:#ffd6d1;
+border-radius:50%;
+box-shadow:0 0 15px rgba(255,192,203,.8);
+}
+
+.timeline-item.left::after{right:-8px;}
+.timeline-item.right::after{left:-8px;}
+
+.timeline-box{
+background:rgba(255,255,255,.05);
+border:1px solid rgba(255,182,193,.3);
+backdrop-filter:blur(10px);
+padding:20px 25px;
+border-radius:20px;
+}
+
+.timeline-time{
+font-size:20px;
+font-weight:bold;
+color:#ffd6d1;
+display:block;
+margin-bottom:5px;
+}
+
+.gallery-wrapper{
+max-width:600px;
+margin:0 auto;
+position:relative;
+overflow:hidden;
+border-radius:20px;
+}
+
+.gallery-track{
+display:flex;
+transition:transform .6s ease;
+}
+
+.slide{min-width:100%;}
+.slide img{
+width:100%;
+height:550px;
+object-fit:cover;
+}
+
+.arrow{
+position:absolute;
+top:50%;
+transform:translateY(-50%);
+background:rgba(0,0,0,.6);
+border:none;
+color:#ffd6d1;
+width:45px;
+height:45px;
+border-radius:50%;
+font-size:20px;
+cursor:pointer;
+z-index:10;
+}
+
+.prev{left:10px;}
+.next{right:10px;}
+
+.dress-container{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+align-items:center;
+gap:40px;
+}
+
+.dress-container img{
+width:180px;
+border-radius:18px;
+box-shadow:0 10px 25px rgba(0,0,0,.4);
+}
+
+.countdown-box{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:35px;
+flex-wrap:wrap;
+margin-top:40px;
+}
+
+.time-box{
+width:120px;
+padding:25px 15px;
+border-radius:20px;
+background:rgba(255,255,255,0.06);
+border:1px solid rgba(255,182,193,.35);
+backdrop-filter:blur(8px);
+box-shadow:0 0 25px rgba(255,182,193,.15);
+}
+
+.time-box span{
+font-size:34px;
+color:#ffd6d1;
+font-weight:bold;
+display:block;
+margin-bottom:8px;
+}
+
+footer{
+padding:60px;
+background:#140c0f;
+}
+
+.music-btn{
+position:fixed;
+bottom:25px;
+right:25px;
+width:60px;
+height:60px;
+border-radius:50%;
+border:none;
+cursor:pointer;
+font-size:24px;
+background:linear-gradient(45deg,#f7c8c2,#e6a7a1);
+color:#3a1f23;
+box-shadow:0 8px 25px rgba(0,0,0,.4);
+z-index:999;
+transition:.3s;
+}
+
+.music-btn:hover{
+transform:scale(1.1);
+}
+
+@media(max-width:768px){
+.timeline::before{left:20px;}
+.timeline-item{
+width:100%;
+padding-left:60px;
+padding-right:20px;
+text-align:left!important;
+left:0!important;
+}
+.timeline-item::after{left:12px!important;}
+}
+</style>
+</head>
+
+<body>
+
+<audio id="bg-music" autoplay loop>
+<source src="musica.mp3" type="audio/mpeg">
+</audio>
+
+<button class="music-btn" id="musicToggle">▶</button>
+
+<section class="hero">
+<div class="particles" id="particles"></div>
+<h1>Laura sandoval</h1>
+<div class="fecha">15 de Agosto 2026</div>
+<a href="#invitacion" class="btn">Ver Invitación</a>
+</section>
+
+<section id="invitacion">
+<div class="card">
+<h2>Con la bendición de Dios y el amor de mis padres</h2>
+<p>Sr. Carlos Martínez</p>
+<p>Sra. Laura Gómez</p>
+<p style="margin-top:20px;font-style:italic;">
+Hoy celebramos una etapa maravillosa en la vida de Laura sandoval .
+</p>
+</div>
+</section>
+
+<section>
+<h2>Misa</h2>
+<div class="card">
+<p><strong>Parroquia San Miguel Arcángel</strong></p>
+<p>Av. Juárez #120, Centro, Monterrey, Nuevo León</p>
+<img src="https://i.postimg.cc/15Lk1vds/cloned-image-(64).png" class="location-img">
+<p style="margin-top:15px;font-size:18px;">⛪ 5:00 PM</p>
+<div style="margin-top:25px;">
+<a href="https://maps.google.com" target="_blank" class="btn">Ver Ubicación</a>
+</div>
+</div>
+</section>
+
+<section>
+<h2>Recepción</h2>
+<div class="card">
+<p><strong>Salón Imperial Dorado</strong></p>
+<p>Av. Las Palmas #245, Col. Vista Hermosa, Monterrey, Nuevo León</p>
+<img src="https://i.postimg.cc/FFfmtkKb/decoracion-con-telas-para-eventos-sociales.webp" class="location-img">
+<p style="margin-top:15px;font-size:18px;">🎉 7:30 PM</p>
+<div style="margin-top:25px;">
+<a href="https://maps.google.com" target="_blank" class="btn">Ver Ubicación</a>
+</div>
+</div>
+</section>
+
+<section class="itinerary-section">
+<h2>Itinerario</h2>
+<p style="margin-bottom:60px;letter-spacing:2px;opacity:.8;">
+Los momentos especiales de mi gran noche
+</p>
+
+<div class="timeline">
+
+<div class="timeline-item left">
+<div class="timeline-box">
+<span class="timeline-time">5:00 PM</span>
+Misa de Acción de Gracias
+</div>
+</div>
+
+<div class="timeline-item right">
+<div class="timeline-box">
+<span class="timeline-time">6:30 PM</span>
+Sesión de Fotos
+</div>
+</div>
+
+<div class="timeline-item left">
+<div class="timeline-box">
+<span class="timeline-time">7:30 PM</span>
+Recepción
+</div>
+</div>
+
+<div class="timeline-item right">
+<div class="timeline-box">
+<span class="timeline-time">8:00 PM</span>
+Brindis
+</div>
+</div>
+
+<div class="timeline-item left">
+<div class="timeline-box">
+<span class="timeline-time">9:00 PM</span>
+Vals y Momentos Especiales
+</div>
+</div>
+
+<div class="timeline-item right">
+<div class="timeline-box">
+<span class="timeline-time">10:00 PM</span>
+¡Que comience la fiesta!
+</div>
+</div>
+
+</div>
+</section>
+
+<section>
+<h2>Código de Vestimenta</h2>
+<div class="card">
+<div class="dress-container">
+<img src="https://i.postimg.cc/jjD3qk6b/cloned-image-(62).png">
+<div>
+<p><strong>Formal Elegante</strong></p>
+<p>Caballeros: Traje oscuro o smoking</p>
+<p>Damas: Vestido largo o cocktail elegante</p>
+<p>Colores sugeridos: Negro, Dorado o Vino</p>
+</div>
+</div>
+</div>
+</section>
+
+<section>
+<h2>Galería</h2>
+<div class="gallery-wrapper">
+<button class="arrow prev">❮</button>
+<button class="arrow next">❯</button>
+<div class="gallery-track">
+<div class="slide"><img src="https://i.postimg.cc/xdjP4N7j/cloned-image-(61).png"></div>
+<div class="slide"><img src="https://i.postimg.cc/PrZKpjYG/cloned-image-(60).png"></div>
+<div class="slide"><img src="https://i.postimg.cc/668MKRQT/cloned-image-(59).png"></div>
+<div class="slide"><img src="https://i.postimg.cc/SNw7ktvs/cloned-image-(58).png"></div>
+</div>
+</div>
+</section>
+
+<section>
+<h2>Cuenta Regresiva</h2>
+<div class="countdown-box">
+<div class="time-box"><span id="days">00</span><p>Días</p></div>
+<div class="time-box"><span id="hours">00</span><p>Horas</p></div>
+<div class="time-box"><span id="minutes">00</span><p>Minutos</p></div>
+<div class="time-box"><span id="seconds">00</span><p>Segundos</p></div>
+</div>
+</section>
+
+<section>
+<h2>Confirmación de Asistencia</h2>
+<div style="margin-top:35px;">
+<a href="https://wa.me/528112345678" class="btn">Confirmar por WhatsApp</a>
+</div>
+</section>
+
+<section>
+<h2>Mesa de Regalos</h2>
+<p>Liverpool – Evento #458921</p>
+</section>
+
+<section>
+<h2>Un Mensaje Especial</h2>
+<div class="card">
+<p style="font-size:18px; line-height:1.8;">
+Hoy celebro una etapa muy especial en mi vida, y no sería lo mismo sin ustedes.
+Gracias por acompañarme, por sus buenos deseos y por formar parte de este día tan importante para mí.
+Los espero con todo mi cariño para compartir juntos esta noche inolvidable. ✨
+</p>
+
+<p style="margin-top:30px;font-family:'Great Vibes',cursive;font-size:40px;color:#c6a74e;">
+Con amor, Isabella
+</p>
+</div>
+</section>
+
+<footer>
+Gracias por acompañarme ✨
+</footer>
+
+<script>
+const animatedElements=document.querySelectorAll(
+"section:not(.hero), .card, .timeline-item, .time-box, .gallery-wrapper, .dress-container"
+);
+
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add("show");
+}
+});
+},{threshold:0.15});
+
+animatedElements.forEach(el=>{
+el.classList.add("reveal");
+observer.observe(el);
+});
+
+const particles=document.getElementById("particles");
+for(let i=0;i<40;i++){
+let s=document.createElement("span");
+s.style.left=Math.random()*100+"%";
+s.style.animationDuration=(15+Math.random()*10)+"s";
+s.style.animationDelay=Math.random()*5+"s";
+particles.appendChild(s);
+}
+
+const track=document.querySelector(".gallery-track");
+const slides=document.querySelectorAll(".slide");
+let index=0;
+
+document.querySelector(".next").onclick=()=>{
+index=(index+1)%slides.length;
+track.style.transform="translateX(-"+index*100+"%)";
+};
+
+document.querySelector(".prev").onclick=()=>{
+index=(index-1+slides.length)%slides.length;
+track.style.transform="translateX(-"+index*100+"%)";
+};
+
+const eventDate=new Date("August 15, 2026 17:00:00").getTime();
+
+setInterval(()=>{
+const now=new Date().getTime();
+const distance=eventDate-now;
+
+if(distance>0){
+document.getElementById("days").innerHTML=Math.floor(distance/(1000*60*60*24));
+document.getElementById("hours").innerHTML=Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+document.getElementById("minutes").innerHTML=Math.floor((distance%(1000*60*60))/(1000*60));
+document.getElementById("seconds").innerHTML=Math.floor((distance%(1000*60))/1000);
+}
+},1000);
+
+const music=document.getElementById("bg-music");
+const toggle=document.getElementById("musicToggle");
+
+toggle.addEventListener("click",()=>{
+if(music.paused){
+music.play();
+toggle.innerHTML="▶";
+}else{
+music.pause();
+toggle.innerHTML="⏸";
+}
+});
+</script>
+
+</body>
+</html>
